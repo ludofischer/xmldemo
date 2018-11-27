@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 public class App {
-    public static DocumentBuilderFactory newDocumentBuilderFactory() {
+    private static DocumentBuilderFactory newDocumentBuilderFactory() {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
@@ -27,7 +27,7 @@ public class App {
         }
     }
 
-    public static DocumentBuilder newDocumentBuilder() {
+    private static DocumentBuilder newDocumentBuilder() {
         try {
             return newDocumentBuilderFactory().newDocumentBuilder();
         } catch (ParserConfigurationException e) {
@@ -35,7 +35,7 @@ public class App {
         }
     }
     public static void main(String[] args) throws IOException, SAXException {
-        String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><document>\uD83C\uDF30</document>";
+        String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><document>🌰</document>";
         InputSource source = new InputSource(new StringReader(xml));
         Document doc = newDocumentBuilder().parse(source);
         System.out.println(doc.getDocumentElement().getFirstChild().getTextContent());
